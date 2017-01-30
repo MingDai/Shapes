@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<style type="text/css">
+		.content
+		{
+			position: relative;
+		}
+		.randShape
+		{
+			border: 0.1rem solid;
+			border-radius: 0.5rem;
+			text-align: center;
+			display: inline-block;
+			padding: 0.5rem 1rem;
+
+		}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<input type="button" class="btnAdd" onclick="addShape()" value="Add Shape">
+		</div>
+	</body>
+	<script>
+
+	function addShape()
+		{
+			generateShape();
+	}
+	function generateShape()
+	{
+		var element = document.createElement("div");
+		element.className = "randShape";
+		element.style.height = Math.random() * 100;
+		element.style.width = Math.random() * 100;
+		element.style.margin = Math.random() * 10 + "%" + Math.random() * 100 + "%";
+
+		var randColor = parseInt(Math.random() * 255);
+		element.style.backgroundColor = 'rgb('+randColor+','+randColor+','+randColor+')';
+
+		var text = document.createTextNode(":D");
+		element.appendChild(text);
+		
+		document.body.appendChild(element);
+	}
+
+	</script>
+</html>
