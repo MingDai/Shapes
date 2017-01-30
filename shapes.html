@@ -11,22 +11,37 @@
 			border-radius: 0.5rem;
 			text-align: center;
 			display: inline-block;
+
+			background:linear-gradient(rgba(0, 255, 0, 0.5));
 		}
 		</style>
 	</head>
 	<body>
 		<div class="content">
-			<input type="button" class="btnAdd" onclick="generateShape()" value="Add Shape">
+			<input type="button" id="startListen" class="btnAdd" onclick="generateShape()" value="Add Shape">
+			<input type="button" class="btnClear" onclick="clearShapes()" value="Clear">
 		</div>
 	</body>
 	<script>
+
+	document.getElementById("startListen").addEventListener("click",function()
+	{
+		document.getElementById("idShape").addEventListener("click",function()
+		{
+			console.log("dad");	
+			alert("color: " + this.style.backgroundColor + " text: " + this.textContent);
+
+		});
+	});
+	
+	
 
 	function generateShape()
 	{
 		var element = document.createElement("div");
 		var minimumSize = 16;//1 rem minimum
 		element.className = "randShape";
-
+		element.setAttribute("id", "idShape");
 		//generate random size and position
 		element.style.height = Math.random() * 100 + minimumSize;
 		element.style.width = Math.random() * 100 + minimumSize;
@@ -36,13 +51,21 @@
 		var randColor = parseInt(Math.random() * 255);
 		element.style.backgroundColor = 'rgb('+randColor+','+randColor+','+randColor+')';
 
-
 		//add text to the div
 		var text = document.createTextNode(":D");
 		element.appendChild(text);
 
 		//place the div onto the DOM		
 		document.body.appendChild(element);
+	}
+
+	function clearShapes()
+	{
+		var shapes = document.getElementsByClassName('randShape');
+		while(shapes[0])//delete all elements with matching
+		{
+			shapes[0].parentNode.removeChild(shapes[0]);
+		}
 	}
 
 	</script>
